@@ -1,9 +1,7 @@
-import React from 'react'
+import AppRouter from "./router/AppRouter";
 
 const App = () => {
-  return (
-    <div>This is my internship project..</div>
-  )
-}
+  return <AppRouter />;
+};
 
-export default App
+export default App;
