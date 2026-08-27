@@ -2,8 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 // import ProtectedRoute from "../components/ProtectedRoute";
 // import Home from "../pages/Home";
-// import Hotels from "../pages/Hotels";
-// import HotelDetail from "../pages/HotelDetail";
+import Hotels from "../pages/Hotels";
+import HotelDetail from "../pages/HotelDetail";
 import Login from "../auth/Login";
 import Register from "../auth/Register";
 // import MyBookings from "../pages/MyBookings";
@@ -18,9 +18,13 @@ const AppRouter = () => {
     <Routes>
       <Route element={<MainLayout />}>
         <Route path="/" element={<Register/>} />
-        {/* <Route path="/hotels" element={<Hotels />} />
-        <Route path="/hotels/:id" element={<HotelDetail />} /> */}
+        <Route path="/hotels" element={<Hotels />}/>
+        <Route path="/hotels/:id" element={<HotelDetail/>}/>
+
         <Route path="/login" element={<Login />} />
+
+
+
         <Route path="/register" element={<Register />} />
         {/* <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} /> */}
