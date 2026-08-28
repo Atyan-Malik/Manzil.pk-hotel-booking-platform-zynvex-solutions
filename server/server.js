@@ -14,7 +14,7 @@ const hotelRoutes = require("./routes/hotelRoutes");
 // const bookingRoutes = require("./routes/bookingRoutes");
 // const reviewRoutes = require("./routes/reviewRoutes");
 // const notificationRoutes = require("./routes/notificationRoutes");
-// const amenityRoutes = require("./routes/amenityRoutes");
+const amenityRoutes = require("./routes/amenityRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 connectDB();
@@ -44,7 +44,7 @@ app.use("/api/hotels", hotelRoutes);
 // app.use("/api/bookings", bookingRoutes);
 // app.use("/api/reviews", reviewRoutes);
 // app.use("/api/notifications", notificationRoutes);
-// app.use("/api/amenities", amenityRoutes);
+app.use("/api/amenities", amenityRoutes);
 app.use("/api/users", userRoutes);
 
 app.all('/*splat', (req, res) => {
