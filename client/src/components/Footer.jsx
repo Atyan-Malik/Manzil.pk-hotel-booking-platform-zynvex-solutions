@@ -8,9 +8,9 @@ const Footer = () => {
         <div>
           <div className="flex items-center gap-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-sm font-bold text-white">
-              SS
+              M.
             </span>
-            <span className="font-display text-lg font-bold">SafarStay</span>
+            <span className="font-display text-lg font-bold">Manzil.Pk</span>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-muted">
             Discover and book stays across Pakistan's most loved destinations, from Islamabad city hotels
@@ -60,14 +60,14 @@ const Footer = () => {
           <h4 className="font-display text-sm font-semibold uppercase tracking-wide text-muted">
             Get in touch
           </h4>
-          <p className="mt-4 text-sm text-muted">support@safarstay.pk</p>
+          <p className="mt-4 text-sm text-muted">support@Manzil.pk</p>
           <p className="mt-1 text-sm text-muted">+92 300 1234567</p>
         </div>
       </div>
 
       <div className="border-t border-slateline py-6">
         <p className="container-page text-center text-xs text-muted">
-          © {new Date().getFullYear()} SafarStay. All rights reserved.
+          © {new Date().getFullYear()} Manzil.Pk All rights reserved.
         </p>
       </div>
     </footer>

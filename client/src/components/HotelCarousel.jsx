@@ -2,7 +2,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import HotelCard from "./HotelCard";
+import HotelCards from "./HotelCards";
 
 const HotelCarousel = ({ hotels }) => {
   if (!hotels?.length) return null;
@@ -22,7 +22,7 @@ const HotelCarousel = ({ hotels }) => {
     >
       {hotels.map((hotel) => (
         <SwiperSlide key={hotel._id}>
-          <HotelCard hotel={hotel} />
+          <HotelCards hotel={hotel} />
         </SwiperSlide>
       ))}
     </Swiper>

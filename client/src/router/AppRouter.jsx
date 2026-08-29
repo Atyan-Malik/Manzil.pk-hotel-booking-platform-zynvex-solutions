@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "../layout/MainLayout";
 // import ProtectedRoute from "../components/ProtectedRoute";
-// import Home from "../pages/Home";
+import Home from "../pages/Home";
 import Hotels from "../pages/Hotels";
 import HotelDetail from "../pages/HotelDetail";
 import Login from "../auth/Login";
@@ -17,7 +17,7 @@ const AppRouter = () => {
   return (
     <Routes>
       <Route element={<MainLayout />}>
-        <Route path="/" element={<Register/>} />
+        <Route path="/" element={<Home/>} />
         <Route path="/hotels" element={<Hotels />}/>
         <Route path="/hotels/:id" element={<HotelDetail/>}/>
 

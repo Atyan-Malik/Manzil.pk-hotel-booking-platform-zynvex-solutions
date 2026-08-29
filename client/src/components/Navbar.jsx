@@ -29,9 +29,9 @@ const Navbar = () => {
         <nav className="flex items-center justify-between rounded-full border border-slateline bg-white/90 px-4 py-2.5 shadow-soft backdrop-blur">
           <Link to="/" className="flex items-center gap-2 pl-2">
             <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink text-sm font-bold text-white">
-              SS
+              M.
             </span>
-            <span className="font-display text-lg font-bold tracking-tight">SafarStay</span>
+            <span className="font-display text-lg font-bold tracking-tight">Manzil.Pk</span>
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
