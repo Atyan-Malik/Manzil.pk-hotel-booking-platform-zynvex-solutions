@@ -41,6 +41,23 @@ const highlights = [
   },
 ];
 
+const destinationImages = {
+  Lahore:
+    "https://images.unsplash.com/photo-1582972236019-ea9c7a8e5f0a?w=900&q=80",
+
+  Islamabad:
+    "https://images.unsplash.com/photo-1591018653367-5f1f6b7c8b6f?w=900&q=80",
+
+  Karachi:
+    "https://images.unsplash.com/photo-1577083552431-6e5fd01988a5?w=900&q=80",
+
+  Multan:
+    "https://images.unsplash.com/photo-1609947017136-9daf32a3f8f5?w=900&q=80",
+
+  Hunza:
+    "https://images.unsplash.com/photo-1590050752117-23a9d0c7b7a4?w=900&q=80",
+};
+
 const Home = () => {
   const [hotels, setHotels] = useState([]);
 
@@ -333,156 +350,252 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================= HIGHLIGHTS ================= */}
-      <section
-        className="
-          container-page
-          mt-14
+    {/* ================= HIGHLIGHTS ================= */}
+<section className="container-page mt-20 sm:mt-28">
+  <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
 
-          sm:mt-20
-        "
-      >
-        <div
-          className="
-            grid
-            gap-4
+    {/* Featured Intro */}
+    <div className="relative overflow-hidden rounded-[2rem] bg-ink p-7 md:p-9 lg:p-10">
+      <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-[#8FE13D]/15 blur-3xl" />
 
-            sm:grid-cols-3
-            sm:gap-6
-          "
-        >
-          {highlights.map(
-            ({ icon: Icon, title, description }) => (
-              <div
-                key={title}
-                className="
-                  card
-                  p-5
+      <div className="relative flex h-full flex-col justify-between">
+        <div>
+          <span className="text-sm font-semibold uppercase tracking-[0.2em] text-[#8FE13D]">
+            Why Manzil.pk
+          </span>
 
-                  sm:p-6
-                "
-              >
-                <div
-                  className="
-                    flex
-                    h-10
-                    w-10
-                    items-center
-                    justify-center
-                    rounded-full
-                    bg-accent/15
+          <h2 className="mt-5 max-w-md font-display text-3xl font-bold leading-tight text-white md:text-4xl">
+            Everything you need for a better stay.
+          </h2>
 
-                    sm:h-11
-                    sm:w-11
-                  "
-                >
-                  <Icon
-                    size={19}
-                    className="text-accent-dark"
-                  />
-                </div>
+          <p className="mt-5 max-w-md text-sm leading-7 text-white/60 md:text-base">
+            We keep hotel discovery simple, transparent, and focused on what
+            actually matters when you're planning your journey.
+          </p>
+        </div>
 
-                <h3
-                  className="
-                    mt-4
-                    font-display
-                    text-base
-                    font-semibold
-                    text-ink
+        <div className="mt-10 flex items-center gap-3 border-t border-white/10 pt-6">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#8FE13D] text-[#17210F]">
+            <ShieldCheck size={19} />
+          </div>
 
-                    sm:text-lg
-                  "
-                >
-                  {title}
-                </h3>
+          <p className="text-sm font-medium text-white/80">
+            Travel with confidence
+          </p>
+        </div>
+      </div>
+    </div>
 
-                <p
-                  className="
-                    mt-2
-                    text-sm
-                    leading-relaxed
-                    text-muted
-                  "
-                >
-                  {description}
-                </p>
+
+    {/* Benefits */}
+    <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+
+      {highlights.map(
+        ({ icon: Icon, title, description }, index) => (
+          <div
+            key={title}
+            className="
+              group
+              rounded-[1.5rem]
+              border
+              border-[#E3E8DE]
+              bg-[#F8FAF5]
+              p-6
+              transition-all
+              duration-300
+              hover:-translate-y-1
+              hover:border-[#CFE6B5]
+              hover:shadow-md
+              lg:flex
+              lg:items-center
+              lg:gap-6
+            "
+          >
+            {/* Number + Icon */}
+            <div className="flex items-center gap-3 lg:shrink-0">
+              <span className="text-xs font-semibold text-[#9BA493]">
+                0{index + 1}
+              </span>
+
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#E8F6D9]">
+                <Icon
+                  size={19}
+                  strokeWidth={2}
+                  className="text-[#6DAF24]"
+                />
               </div>
-            )
-          )}
-        </div>
-      </section>
+            </div>
 
-      {/* ================= DESTINATIONS ================= */}
-      <section
-        className="
-          container-page
-          mt-14
-          mb-14
+            <div className="mt-5 lg:mt-0">
+              <h3 className="font-display text-lg font-semibold text-ink">
+                {title}
+              </h3>
 
-          sm:mt-20
-          sm:mb-20
-        "
-      >
-        <h2
-          className="
-            font-display
-            text-2xl
-            font-bold
-            leading-tight
-            text-ink
+              <p className="mt-2 text-sm leading-6 text-muted">
+                {description}
+              </p>
+            </div>
 
-            sm:text-3xl
-          "
-        >
-          Explore by destination
-        </h2>
-
-        <div
-          className="
-            mt-6
-            grid
-            grid-cols-2
-            gap-3
-
-            sm:mt-8
-            sm:grid-cols-3
-            sm:gap-4
-
-            lg:grid-cols-5
-          "
-        >
-          {PAKISTAN_CITIES.map((city) => (
-            <Link
-              key={city}
-              to={`/hotels?city=${encodeURIComponent(city)}`}
+            <ArrowRight
+              size={17}
               className="
-                card
-                flex
-                min-h-[70px]
-                items-center
-                justify-center
-                px-3
-                py-4
-                text-center
-                font-display
-                text-sm
-                font-semibold
-                text-ink
-                transition-all
-
-                hover:border-accent
-                hover:-translate-y-0.5
-
-                sm:min-h-[80px]
-                sm:px-4
-                sm:py-6
+                mt-5
+                text-[#AAB2A4]
+                transition-transform
+                duration-300
+                group-hover:translate-x-1
+                lg:ml-auto
+                lg:mt-0
               "
-            >
-              {city}
-            </Link>
-          ))}
+            />
+          </div>
+        )
+      )}
+
+    </div>
+  </div>
+</section>
+     
+
+{/* ================= DESTINATIONS ================= */}
+<section className="container-page mt-20 mb-16 sm:mt-28 sm:mb-24">
+
+  {/* Heading */}
+  <div className="flex items-end justify-between gap-5">
+    <div>
+      <span className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+        Explore Pakistan
+      </span>
+
+      <h2 className="mt-3 font-display text-3xl font-bold leading-tight text-ink md:text-4xl">
+        Explore by destination
+      </h2>
+
+      <p className="mt-3 max-w-xl text-sm leading-6 text-muted">
+        From lively cities to peaceful mountain escapes, discover stays in
+        destinations worth exploring.
+      </p>
+    </div>
+
+    <Link
+      to="/hotels"
+      className="hidden shrink-0 items-center gap-2 text-sm font-semibold text-ink transition-opacity hover:opacity-60 sm:flex"
+    >
+      View all hotels
+      <ArrowRight size={16} />
+    </Link>
+  </div>
+
+
+  {/* Destination Grid */}
+  <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
+
+    {PAKISTAN_CITIES.map((city, index) => (
+      <Link
+        key={city}
+        to={`/hotels?city=${encodeURIComponent(city)}`}
+        className={`
+          group
+          relative
+          overflow-hidden
+          rounded-[1.5rem]
+          bg-ink
+          ${index === 0 ? "sm:col-span-2 lg:col-span-2" : ""}
+          ${index === 0 ? "min-h-[250px] sm:min-h-[330px]" : "min-h-[200px] sm:min-h-[250px]"}
+        `}
+      >
+
+        {/* Image */}
+        <img
+          src={
+            destinationImages[city] ||
+            "/images/destinations/default.jpg"
+          }
+          alt={`${city} destination`}
+          className="
+            absolute
+            inset-0
+            h-full
+            w-full
+            object-cover
+            transition-transform
+            duration-700
+            group-hover:scale-105
+          "
+        />
+
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+
+        {/* Content */}
+        <div className="absolute inset-x-0 bottom-0 p-5 md:p-6">
+
+          <div className="flex items-end justify-between gap-3">
+
+            <div>
+              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-white/60">
+                Discover stays
+              </p>
+
+              <h3 className="mt-1 font-display text-xl font-semibold text-white md:text-2xl">
+                {city}
+              </h3>
+            </div>
+
+            <div className="
+              flex
+              h-9
+              w-9
+              shrink-0
+              items-center
+              justify-center
+              rounded-full
+              bg-white/90
+              text-ink
+              transition-all
+              duration-300
+              group-hover:bg-[#8FE13D]
+              group-hover:translate-x-1
+            ">
+              <ArrowRight size={16} />
+            </div>
+
+          </div>
+
         </div>
-      </section>
+      </Link>
+    ))}
+
+  </div>
+
+
+  {/* Mobile View All */}
+  <div className="mt-6 sm:hidden">
+    <Link
+      to="/hotels"
+      className="
+        flex
+        items-center
+        justify-center
+        gap-2
+        rounded-xl
+        border
+        border-slateline
+        px-4
+        py-3
+        text-sm
+        font-semibold
+        text-ink
+        transition-colors
+        hover:border-accent
+      "
+    >
+      View all hotels
+      <ArrowRight size={16} />
+    </Link>
+  </div>
+
+</section>
     </div>
   );
 };
