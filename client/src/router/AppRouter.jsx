@@ -7,7 +7,7 @@ import HotelDetail from "../pages/HotelDetail";
 import Login from "../auth/Login";
 import Register from "../auth/Register";
 import MyBookings from "../pages/MyBookings";
-// import Notifications from "../pages/Notifications";
+import Notifications from "../pages/Notifications";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
@@ -37,14 +37,14 @@ const AppRouter = () => {
             </ProtectedRoute>
           }
         />
-        {/* <Route
+        <Route
           path="/notifications"
           element={
             <ProtectedRoute>
               <Notifications />
             </ProtectedRoute>
           }
-        />  */}
+        /> 
 
         <Route path="*" element={<NotFound />} /> 
       </Route>

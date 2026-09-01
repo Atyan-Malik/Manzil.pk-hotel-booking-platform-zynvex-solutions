@@ -10,10 +10,10 @@ const errorHandler = require("./middleware/errorHandler");
 
 const authRoutes = require("./routes/authRoutes");
 const hotelRoutes = require("./routes/hotelRoutes");
-// const roomRoutes = require("./routes/roomRoutes");
+const roomRoutes = require("./routes/roomRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
-// const notificationRoutes = require("./routes/notificationRoutes");
+const notificationRoutes = require("./routes/notificationRoutes");
 const amenityRoutes = require("./routes/amenityRoutes");
 const userRoutes = require("./routes/userRoutes");
 
@@ -40,10 +40,10 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/hotels", hotelRoutes);
-// app.use("/api/rooms", roomRoutes);
+app.use("/api/rooms", roomRoutes);
 app.use("/api/bookings", bookingRoutes);
 app.use("/api/reviews", reviewRoutes);
-// app.use("/api/notifications", notificationRoutes);
+app.use("/api/notifications", notificationRoutes);
 app.use("/api/amenities", amenityRoutes);
 app.use("/api/users", userRoutes);
 
