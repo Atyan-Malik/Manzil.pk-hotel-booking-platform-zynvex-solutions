@@ -15,6 +15,7 @@ import { getRoomsByHotel } from "../services/roomService";
 
 import RoomBookingCard from "../components/RoomBookingCard";
 import ReviewList from "../components/ReviewList";
+import Amenities from "./Amenities";
 
 const HotelDetail = () => {
   const { id } = useParams();
@@ -30,31 +31,27 @@ const HotelDetail = () => {
     checkOut: searchParams.get("checkOut") || "",
   };
 
- useEffect(() => {
-  setIsLoading(true);
-console.log("HOTEL DETAIL ID:", id);
-  Promise.all([
-    getHotel(id),
-    getRoomsByHotel(id),
-    getHotelReviews(id),
-  ])
-    .then(([hotelData, roomData, reviewData]) => {
-      console.log("Hotel:", hotelData);
-      console.log("Rooms:", roomData);
-      console.log("Reviews:", reviewData);
+  useEffect(() => {
+    setIsLoading(true);
+    console.log("HOTEL DETAIL ID:", id);
+    Promise.all([getHotel(id), getRoomsByHotel(id), getHotelReviews(id)])
+      .then(([hotelData, roomData, reviewData]) => {
+        console.log("Hotel:", hotelData);
+        console.log("Rooms:", roomData);
+        console.log("Reviews:", reviewData);
 
-      setHotel(hotelData.hotel);
-      setRooms(roomData.rooms || []);
-      setReviews(reviewData.reviews || []);
-    })
-    .catch((error) => {
-      console.error("Hotel detail error:", error);
-      setHotel(null);
-      setRooms([]);
-      setReviews([]);
-    })
-    .finally(() => setIsLoading(false));
-}, [id]);
+        setHotel(hotelData.hotel);
+        setRooms(roomData.rooms || []);
+        setReviews(reviewData.reviews || []);
+      })
+      .catch((error) => {
+        console.error("Hotel detail error:", error);
+        setHotel(null);
+        setRooms([]);
+        setReviews([]);
+      })
+      .finally(() => setIsLoading(false));
+  }, [id]);
 
   if (isLoading) {
     return (
@@ -175,38 +172,7 @@ console.log("HOTEL DETAIL ID:", id);
             </section>
 
             {/* AMENITIES */}
-            {hotel.amenities?.length > 0 && (
-              <section className="mt-12">
-                <p className="text-sm font-semibold text-accent-dark">
-                  Everything you need
-                </p>
-
-                <h2 className="mt-1 font-display text-2xl font-bold text-ink">
-                  Hotel amenities
-                </h2>
-
-                <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                  {hotel.amenities.map((amenity) => (
-                    <div
-                      key={amenity._id}
-                      className="flex items-center gap-3 rounded-2xl border border-slateline bg-white px-4 py-3"
-                    >
-                      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/15">
-                        <Wifi
-                          size={17}
-                          className="text-accent-dark"
-                        />
-                      </div>
-
-                      <span className="text-sm font-medium text-ink">
-                        {amenity.name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </section>
-            )}
-
+            <Amenities amenities={hotel.amenities} />
             {/* ROOMS */}
             <section className="mt-12">
               <div className="flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
@@ -317,16 +283,11 @@ console.log("HOTEL DETAIL ID:", id);
                 <div className="mt-5 space-y-4">
                   <div className="flex items-start gap-3">
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/15">
-                      <Clock
-                        size={17}
-                        className="text-accent-dark"
-                      />
+                      <Clock size={17} className="text-accent-dark" />
                     </div>
 
                     <div>
-                      <p className="text-xs text-muted">
-                        Check-in
-                      </p>
+                      <p className="text-xs text-muted">Check-in</p>
 
                       <p className="mt-0.5 text-sm font-semibold text-ink">
                         {hotel.policies?.checkInTime || "12:00 PM"}
@@ -336,16 +297,11 @@ console.log("HOTEL DETAIL ID:", id);
 
                   <div className="flex items-start gap-3">
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent/15">
-                      <Clock
-                        size={17}
-                        className="text-accent-dark"
-                      />
+                      <Clock size={17} className="text-accent-dark" />
                     </div>
 
                     <div>
-                      <p className="text-xs text-muted">
-                        Check-out
-                      </p>
+                      <p className="text-xs text-muted">Check-out</p>
 
                       <p className="mt-0.5 text-sm font-semibold text-ink">
                         {hotel.policies?.checkOutTime || "11:00 AM"}
