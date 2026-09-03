@@ -216,50 +216,130 @@ const Home = () => {
         </div>
       </section>
 
-      {/* ================= STATS ================= */}
-      <section
-        className="
-          container-page
-          mt-10
-          grid
-          grid-cols-2
-          gap-y-7
-          gap-x-4
+     {/* ================= STATS ================= */}
+<section className="container-page mt-10 flex justify-center sm:mt-14">
+  <div
+    className="
+      relative
+      w-full
+      max-w-5xl
+      overflow-hidden
+      rounded-[2rem]
+      border
+      border-[#DDE5D6]
+      bg-[#F8FAF5]
+      shadow-[0_18px_50px_rgba(23,33,15,0.08)]
+    "
+  >
+    {/* Subtle accent glow */}
+    <div
+      className="
+        pointer-events-none
+        absolute
+        -right-24
+        -top-24
+        h-48
+        w-48
+        rounded-full
+        bg-[#8FE13D]/10
+        blur-3xl
+      "
+    />
 
-          sm:mt-14
-          sm:grid-cols-4
-          sm:gap-6
-        "
-      >
-        {stats.map((stat) => (
-          <div
-            key={stat.label}
+    <div
+      className="
+        relative
+        grid
+        grid-cols-2
+        sm:grid-cols-4
+      "
+    >
+      {stats.map((stat, index) => (
+        <div
+          key={stat.label}
+          className={`
+            group
+            relative
+            flex
+            min-h-[125px]
+            flex-col
+            items-center
+            justify-center
+            px-4
+            py-7
+            text-center
+            transition-all
+            duration-300
+            hover:bg-white
+
+            ${
+              index === 1
+                ? "border-l border-[#E3E8DE]"
+                : ""
+            }
+
+            ${
+              index === 2
+                ? "border-t border-[#E3E8DE] sm:border-l sm:border-t-0"
+                : ""
+            }
+
+            ${
+              index === 3
+                ? "border-l border-t border-[#E3E8DE] sm:border-t-0"
+                : ""
+            }
+          `}
+        >
+          {/* Accent dot */}
+          <span
             className="
-              text-center
+              absolute
+              top-5
+              h-1
+              w-1
+              rounded-full
+              bg-[#8FE13D]
+              opacity-70
+              transition-all
+              duration-300
+              group-hover:w-5
+            "
+          />
 
-              sm:text-left
+          {/* Number */}
+          <p
+            className="
+              font-display
+              text-3xl
+              font-extrabold
+              tracking-tight
+              text-ink
+              sm:text-4xl
             "
           >
-            <p
-              className="
-                font-display
-                text-2xl
-                font-extrabold
-                text-ink
+            {stat.value}
+          </p>
 
-                sm:text-3xl
-              "
-            >
-              {stat.value}
-            </p>
-
-            <p className="mt-1 text-xs text-muted sm:text-sm">
-              {stat.label}
-            </p>
-          </div>
-        ))}
-      </section>
-
+          {/* Label */}
+          <p
+            className="
+              mt-2
+              text-[10px]
+              font-semibold
+              uppercase
+              tracking-[0.16em]
+              text-[#7F8979]
+              sm:text-xs
+            "
+          >
+            {stat.label}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
       {/* ================= POPULAR HOTELS ================= */}
       <section
         className="
