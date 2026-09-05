@@ -27,6 +27,24 @@ Module 1 establishes the application's core backend architecture and hotel disco
 - Pakistan-focused hotel data
 - RESTful API architecture
 
+## Module 2 — Hotel Booking & Reservation Management
+
+**Status: Completed ✅**
+
+Module 2 extends the hotel discovery experience with detailed hotel information and a complete booking and reservation management workflow.
+
+### Completed Features
+
+- Hotel detail pages
+- Hotel availability handling
+- Booking creation
+- Booking cancellation
+- Booking validation
+- Booking history
+- User booking management
+- RESTful booking APIs
+- Complete hotel reservation workflow
+
 
 ## Tech Stack
 
