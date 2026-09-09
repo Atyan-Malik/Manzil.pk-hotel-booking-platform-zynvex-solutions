@@ -46,6 +46,12 @@ app.use("/api/reviews", reviewRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/amenities", amenityRoutes);
 app.use("/api/users", userRoutes);
+// admin starts from here
+// app.use("/api/admin/auth", authRoutes);
+// app.use("/api/admin/hotels", hotelRoutes);
+// app.use("/api/admin/bookings", bookingRoutes);
+// app.use("/api/admin/dashboard", dashboardRoutes);
+
 
 app.all('/*splat', (req, res) => {
   res.status(404).json({ success: false, message: `Route ${req.originalUrl} not found` });
