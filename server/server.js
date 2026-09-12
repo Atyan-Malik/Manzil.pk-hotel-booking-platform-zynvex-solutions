@@ -16,6 +16,10 @@ const reviewRoutes = require("./routes/reviewRoutes");
 const notificationRoutes = require("./routes/notificationRoutes");
 const amenityRoutes = require("./routes/amenityRoutes");
 const userRoutes = require("./routes/userRoutes");
+const adminauthRoutes = require("./admin/routes/adminauthRoutes")
+const adminbookingRoutes = require("./admin/routes/adminbookingRoutes")
+const admindashboardRoutes = require("./admin/routes/admindashboardRoutes")
+const adminhotelRoutes = require("./admin/routes/adminhotelRoutes")
 
 connectDB();
 
@@ -47,10 +51,10 @@ app.use("/api/notifications", notificationRoutes);
 app.use("/api/amenities", amenityRoutes);
 app.use("/api/users", userRoutes);
 // admin starts from here
-// app.use("/api/admin/auth", authRoutes);
-// app.use("/api/admin/hotels", hotelRoutes);
-// app.use("/api/admin/bookings", bookingRoutes);
-// app.use("/api/admin/dashboard", dashboardRoutes);
+app.use("/api/admin/auth", adminauthRoutes);
+app.use("/api/admin/hotels", adminhotelRoutes);
+app.use("/api/admin/bookings", adminbookingRoutes);
+app.use("/api/admin/dashboard", admindashboardRoutes);
 
 
 app.all('/*splat', (req, res) => {

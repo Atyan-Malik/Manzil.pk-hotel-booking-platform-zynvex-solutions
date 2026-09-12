@@ -11,10 +11,8 @@ export const PAKISTAN_CITIES = [
   "Murree",
   "Hunza",
   "Skardu",
-  "Swat",
-  "Naran",
-  "Multan",
-  "Peshawar",
+ 
+  
 ];
 
 export const BOOKING_STATUS_LABELS = {

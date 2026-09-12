@@ -40,7 +40,7 @@ const About = () => {
     <div className="relative min-h-[340px] overflow-hidden lg:min-h-full">
       {/* Background image */}
       <img
-        src="/manzil-about.jpg"
+        src="/images/manzil-about.jpg"
         alt="Beautiful destination in Pakistan"
         className="absolute inset-0 h-full w-full object-cover"
       />

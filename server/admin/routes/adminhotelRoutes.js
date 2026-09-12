@@ -11,10 +11,10 @@ import {
   setCoverImage,
 } from "../controllers/hotelController.js";
 import { protectAdmin } from "../middleware/adminAuth.js";
-import { upload } from "../config/cloudinary.js";
+import { upload } from "../utils/cloudinary.js";
 
 const router = express.Router();
-
+ 
 router.use(protectAdmin);
 
 router.route("/").get(getHotels).post(createHotel);
