@@ -1,11 +1,13 @@
-import express from "express";
-import {
+const express = require("express");
+
+const {
   getBookings,
   getBookingById,
   updateBookingStatus,
   updatePaymentStatus,
-} from "../controllers/bookingController.js";
-import { protectAdmin } from "../middleware/adminAuth.js";
+} = require("../controllers/bookingController");
+
+const { protectAdmin } = require("../middleware/adminAuth");
 
 const router = express.Router();
 
@@ -16,4 +18,4 @@ router.get("/:id", getBookingById);
 router.patch("/:id/status", updateBookingStatus);
 router.patch("/:id/payment", updatePaymentStatus);
 
-export default router;
+module.exports = router;
