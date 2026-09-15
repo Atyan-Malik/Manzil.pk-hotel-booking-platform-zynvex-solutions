@@ -1,21 +1,36 @@
-const express = require("express");
+import express from "express";
 
-const {
+import {
   getBookings,
   getBookingById,
   updateBookingStatus,
   updatePaymentStatus,
-} = require("../controllers/bookingController");
+} from "../controllers/bookingController.js";
 
-const { protectAdmin } = require("../middleware/adminAuth");
+import { protectAdmin } from "../middleware/adminAuth.js";
 
 const router = express.Router();
 
 router.use(protectAdmin);
 
-router.get("/", getBookings);
-router.get("/:id", getBookingById);
-router.patch("/:id/status", updateBookingStatus);
-router.patch("/:id/payment", updatePaymentStatus);
+router.get(
+  "/",
+  getBookings
+);
 
-module.exports = router;
+router.get(
+  "/:id",
+  getBookingById
+);
+
+router.patch(
+  "/:id/status",
+  updateBookingStatus
+);
+
+router.patch(
+  "/:id/payment",
+  updatePaymentStatus
+);
+
+export default router;

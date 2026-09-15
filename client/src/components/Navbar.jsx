@@ -7,7 +7,7 @@ import { getMyNotifications } from "../services/notificationService";
 
 const dashboardPathByRole = {
   [ROLES.CUSTOMER]: "/my-bookings",
-  [ROLES.HOTEL_MANAGER]: "/manager/dashboard",
+  [ROLES.HOTEL_MANAGER]: "/owner/",
   [ROLES.ADMIN]: "/admin/dashboard",
 };
 

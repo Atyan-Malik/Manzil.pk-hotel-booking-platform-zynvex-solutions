@@ -1,46 +1,62 @@
-require("dotenv").config({ path: require("path").resolve(__dirname, "../.env") });
+import dotenv from "dotenv";
+import express from "express";
+import cors from "cors";
+import morgan from "morgan";
+import cookieParser from "cookie-parser";
 
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-const cookieParser = require("cookie-parser");
+import connectDB from "./config/db.js";
+import errorHandler from "./middleware/errorHandler.js";
 
-const connectDB = require("./config/db");
-const errorHandler = require("./middleware/errorHandler");
+import authRoutes from "./routes/authRoutes.js";
+import hotelRoutes from "./routes/hotelRoutes.js";
+import roomRoutes from "./routes/roomRoutes.js";
+import bookingRoutes from "./routes/bookingRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js";
+import notificationRoutes from "./routes/notificationRoutes.js";
+import amenityRoutes from "./routes/amenityRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
-const authRoutes = require("./routes/authRoutes");
-const hotelRoutes = require("./routes/hotelRoutes");
-const roomRoutes = require("./routes/roomRoutes");
-const bookingRoutes = require("./routes/bookingRoutes");
-const reviewRoutes = require("./routes/reviewRoutes");
-const notificationRoutes = require("./routes/notificationRoutes");
-const amenityRoutes = require("./routes/amenityRoutes");
-const userRoutes = require("./routes/userRoutes");
-const adminauthRoutes = require("./admin/routes/adminauthRoutes")
-const adminbookingRoutes = require("./admin/routes/adminbookingRoutes")
-const admindashboardRoutes = require("./admin/routes/admindashboardRoutes")
-const adminhotelRoutes = require("./admin/routes/adminhotelRoutes")
+import adminauthRoutes from "./admin/routes/adminauthRoutes.js";
+import adminbookingRoutes from "./admin/routes/adminbookingRoutes.js";
+import admindashboardRoutes from "./admin/routes/admindashboardRoutes.js";
+import adminhotelRoutes from "./admin/routes/adminhotelRoutes.js";
 
-connectDB();
+dotenv.config({ path: "../.env" });
+
+await connectDB();
 
 const app = express();
 
+// CORS
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
     credentials: true,
   })
 );
+
+// Body parsing
 app.use(express.json());
+
+// Cookies
 app.use(cookieParser());
 
+// Logging
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
 }
 
+// Health check
 app.get("/api/health", (req, res) => {
-  res.status(200).json({ success: true, message: "SafarStay API is running" });
+  res.status(200).json({
+    success: true,
+    message: "SafarStay API is running",
+  });
 });
+
+// ==============================
+// Public/User Routes
+// ==============================
 
 app.use("/api/auth", authRoutes);
 app.use("/api/hotels", hotelRoutes);
@@ -50,21 +66,41 @@ app.use("/api/reviews", reviewRoutes);
 app.use("/api/notifications", notificationRoutes);
 app.use("/api/amenities", amenityRoutes);
 app.use("/api/users", userRoutes);
-// admin starts from here
+
+// ==============================
+// Admin Routes
+// ==============================
+
 app.use("/api/admin/auth", adminauthRoutes);
 app.use("/api/admin/hotels", adminhotelRoutes);
 app.use("/api/admin/bookings", adminbookingRoutes);
 app.use("/api/admin/dashboard", admindashboardRoutes);
 
+// ==============================
+// 404 Handler
+// ==============================
 
-app.all('/*splat', (req, res) => {
-  res.status(404).json({ success: false, message: `Route ${req.originalUrl} not found` });
+app.use((req, res) => {
+  res.status(404).json({
+    success: false,
+    message: `Route ${req.originalUrl} not found`,
+  });
 });
 
+// ==============================
+// Global Error Handler
+// ==============================
+
 app.use(errorHandler);
+
+// ==============================
+// Start Server
+// ==============================
 
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
-  console.log(`SafarStay server running on port ${PORT} in ${process.env.NODE_ENV} mode`);
+  console.log(
+    `Manzil.pk server running on port ${PORT} in ${process.env.NODE_ENV} mode`
+  );
 });

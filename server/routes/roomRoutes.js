@@ -1,17 +1,64 @@
-const express = require("express");
-const roomController = require("../controller/roomController");
-const protect = require("../middleware/auth");
-const restrictTo = require("../middleware/role");
-const { ROLES } = require("../config/constants");
+import express from "express";
+
+import {
+  getRoomsByHotel,
+  getRoom,
+  checkAvailability,
+  createRoom,
+  updateRoom,
+  deleteRoom,
+} from "../controller/roomController.js";
+
+import protect from "../middleware/auth.js";
+import restrictTo from "../middleware/role.js";
+
+import { ROLES } from "../config/constants.js";
 
 const router = express.Router();
 
-router.get("/hotel/:hotelId", roomController.getRoomsByHotel);
-router.get("/:id", roomController.getRoom);
-router.get("/:id/availability", roomController.checkAvailability);
+router.get(
+  "/hotel/:hotelId",
+  getRoomsByHotel
+);
 
-router.post("/", protect, restrictTo(ROLES.HOTEL_MANAGER, ROLES.ADMIN), roomController.createRoom);
-router.patch("/:id", protect, restrictTo(ROLES.HOTEL_MANAGER, ROLES.ADMIN), roomController.updateRoom);
-router.delete("/:id", protect, restrictTo(ROLES.HOTEL_MANAGER, ROLES.ADMIN), roomController.deleteRoom);
+router.get(
+  "/:id",
+  getRoom
+);
 
-module.exports = router;
+router.get(
+  "/:id/availability",
+  checkAvailability
+);
+
+router.post(
+  "/",
+  protect,
+  restrictTo(
+    ROLES.HOTEL_MANAGER,
+    ROLES.ADMIN
+  ),
+  createRoom
+);
+
+router.patch(
+  "/:id",
+  protect,
+  restrictTo(
+    ROLES.HOTEL_MANAGER,
+    ROLES.ADMIN
+  ),
+  updateRoom
+);
+
+router.delete(
+  "/:id",
+  protect,
+  restrictTo(
+    ROLES.HOTEL_MANAGER,
+    ROLES.ADMIN
+  ),
+  deleteRoom
+);
+
+export default router;

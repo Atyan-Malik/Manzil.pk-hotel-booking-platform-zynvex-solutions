@@ -1,7 +1,8 @@
-const jwt = require("jsonwebtoken");
-const catchAsync = require("../utils/catchAsync");
-const AppError = require("../utils/AppError");
-const User = require("../models/User");
+import jwt from "jsonwebtoken";
+
+import catchAsync from "../utils/catchAsync.js";
+import AppError from "../utils/AppError.js";
+import User from "../models/User.js";
 
 const protect = catchAsync(async (req, res, next) => {
   let token;
@@ -13,27 +14,53 @@ const protect = catchAsync(async (req, res, next) => {
   }
 
   if (!token) {
-    return next(new AppError("You are not logged in. Please log in to continue.", 401));
+    return next(
+      new AppError(
+        "You are not logged in. Please log in to continue.",
+        401
+      )
+    );
   }
 
   let decoded;
+
   try {
-    decoded = jwt.verify(token, process.env.JWT_SECRET);
+    decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET
+    );
   } catch (err) {
-    return next(new AppError("Invalid or expired session. Please log in again.", 401));
+    return next(
+      new AppError(
+        "Invalid or expired session. Please log in again.",
+        401
+      )
+    );
   }
 
   const currentUser = await User.findById(decoded.id);
+
   if (!currentUser) {
-    return next(new AppError("The user belonging to this token no longer exists.", 401));
+    return next(
+      new AppError(
+        "The user belonging to this token no longer exists.",
+        401
+      )
+    );
   }
 
   if (!currentUser.isActive) {
-    return next(new AppError("This account has been deactivated.", 403));
+    return next(
+      new AppError(
+        "This account has been deactivated.",
+        403
+      )
+    );
   }
 
   req.user = currentUser;
+
   next();
 });
 
-module.exports = protect;
+export default protect;

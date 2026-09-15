@@ -1,19 +1,22 @@
-const express = require("express");
-const {
+import express from "express";
+
+import {
   loginAdmin,
   getMe,
   registerAdmin,
-} = require("../controllers/authController");
+} from "../controllers/authController.js";
 
-const {
+import {
   protectAdmin,
   requireSuperAdmin,
-} = require("../middleware/adminAuth");
+} from "../middleware/adminAuth.js";
 
 const router = express.Router();
 
 router.post("/login", loginAdmin);
+
 router.get("/me", protectAdmin, getMe);
+
 router.post(
   "/register",
   protectAdmin,
@@ -21,4 +24,4 @@ router.post(
   registerAdmin
 );
 
-module.exports = router;
+export default router;

@@ -1,15 +1,36 @@
-const express = require("express");
-const userController = require("../controller/userController");
-const protect = require("../middleware/auth");
-const restrictTo = require("../middleware/role");
-const { ROLES } = require("../config/constants");
+import express from "express";
+
+import {
+  getUsers,
+  getDashboardStats,
+  toggleUserActive,
+} from "../controller/userController.js";
+
+import protect from "../middleware/auth.js";
+import restrictTo from "../middleware/role.js";
+
+import { ROLES } from "../config/constants.js";
 
 const router = express.Router();
 
-router.use(protect, restrictTo(ROLES.ADMIN));
+router.use(
+  protect,
+  restrictTo(ROLES.ADMIN)
+);
 
-router.get("/", userController.getUsers);
-router.get("/dashboard-stats", userController.getDashboardStats);
-router.patch("/:id/toggle-active", userController.toggleUserActive);
+router.get(
+  "/",
+  getUsers
+);
 
-module.exports = router;
+router.get(
+  "/dashboard-stats",
+  getDashboardStats
+);
+
+router.patch(
+  "/:id/toggle-active",
+  toggleUserActive
+);
+
+export default router;

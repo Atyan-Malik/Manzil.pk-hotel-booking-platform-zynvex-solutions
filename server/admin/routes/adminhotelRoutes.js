@@ -1,6 +1,6 @@
-const express = require("express");
+import express from "express";
 
-const {
+import {
   getHotels,
   getHotelById,
   createHotel,
@@ -10,16 +10,20 @@ const {
   addHotelImages,
   deleteHotelImage,
   setCoverImage,
-} = require("../controllers/hotelController");
+} from "../controllers/hotelController.js";
 
-const { protectAdmin } = require("../middleware/adminAuth");
-const { upload } = require("../utils/cloudinary");
+import { protectAdmin } from "../middleware/adminAuth.js";
+
+import { upload } from "../utils/cloudinary.js";
 
 const router = express.Router();
 
 router.use(protectAdmin);
 
-router.route("/").get(getHotels).post(createHotel);
+router
+  .route("/")
+  .get(getHotels)
+  .post(createHotel);
 
 router
   .route("/:id")
@@ -27,7 +31,10 @@ router
   .put(updateHotel)
   .delete(deleteHotel);
 
-router.patch("/:id/status", updateHotelStatus);
+router.patch(
+  "/:id/status",
+  updateHotelStatus
+);
 
 router.post(
   "/:id/images",
@@ -35,11 +42,14 @@ router.post(
   addHotelImages
 );
 
-router.delete("/:id/images/:imageId", deleteHotelImage);
+router.delete(
+  "/:id/images/:imageId",
+  deleteHotelImage
+);
 
 router.patch(
   "/:id/images/:imageId/cover",
   setCoverImage
 );
 
-module.exports = router;
+export default router;

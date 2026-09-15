@@ -1,13 +1,35 @@
-const express = require("express");
-const amenityController = require("../controller/amenityController");
-const protect = require("../middleware/auth");
-const restrictTo = require("../middleware/role");
-const { ROLES } = require("../config/constants");
+import express from "express";
+
+import {
+  getAmenities,
+  createAmenity,
+  deleteAmenity,
+} from "../controller/amenityController.js";
+
+import protect from "../middleware/auth.js";
+import restrictTo from "../middleware/role.js";
+
+import { ROLES } from "../config/constants.js";
 
 const router = express.Router();
 
-router.get("/", amenityController.getAmenities);
-router.post("/", protect, restrictTo(ROLES.ADMIN), amenityController.createAmenity);
-router.delete("/:id", protect, restrictTo(ROLES.ADMIN), amenityController.deleteAmenity);
+router.get(
+  "/",
+  getAmenities
+);
 
-module.exports = router;
+router.post(
+  "/",
+  protect,
+  restrictTo(ROLES.ADMIN),
+  createAmenity
+);
+
+router.delete(
+  "/:id",
+  protect,
+  restrictTo(ROLES.ADMIN),
+  deleteAmenity
+);
+
+export default router;

@@ -25,7 +25,7 @@ const Register = () => {
     try {
       const user = await register(formData);
       toast.success(`Welcome to SafarStay, ${user.name.split(" ")[0]}`);
-      navigate(user.role === ROLES.HOTEL_MANAGER ? "/manager/dashboard" : "/");
+      navigate(user.role === ROLES.HOTEL_MANAGER ? "/owner" : "/");
     } catch (error) {
       toast.error(getErrorMessage(error));
     } finally {

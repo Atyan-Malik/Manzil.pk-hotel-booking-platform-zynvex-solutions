@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const amenitySchema = new mongoose.Schema(
   {
@@ -8,10 +8,12 @@ const amenitySchema = new mongoose.Schema(
       unique: true,
       trim: true,
     },
+
     icon: {
       type: String,
       default: "",
     },
+
     category: {
       type: String,
       enum: ["hotel", "room", "both"],
@@ -21,4 +23,6 @@ const amenitySchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Amenity", amenitySchema);
+const Amenity = mongoose.model("Amenity", amenitySchema);
+
+export default Amenity;
