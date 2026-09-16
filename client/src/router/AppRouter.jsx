@@ -28,7 +28,8 @@ import AdminHotels from "../admin/pages/Hotels";
 import HotelForm from "../admin/pages/HotelForm";
 import AdminBookings from "../admin/pages/Bookings";
 import BookingDetail from "../admin/pages/BookingDetail";
-
+import ContactSection from "../admin/components/ContactSection";
+import PoliciesSection from "../admin/components/PoliciesSection";
 // ==================== OWNER ====================
 import OwnerLayout from "../owner/layout/OwnerLayout";
 import OwnerDashboard from "../owner/pages/owner/OwnerDashboard";
@@ -39,6 +40,7 @@ import OwnerBookings from "../owner/pages/owner/OwnerBookings";
 import OwnerBookingDetail from "../owner/pages/owner/OwnerBookingDetail";
 import OwnerReviews from "../owner/pages/owner/OwnerReviews";
 import OwnerProfile from "../owner/pages/owner/OwnerProfile";
+
 
 function App() {
   return (
@@ -161,6 +163,8 @@ function App() {
 
           {/* /admin/hotels/new */}
           <Route path="hotels/new" element={<HotelForm />} />
+          <Route path="hotels/contact" element={< ContactSection/>} />
+          <Route path="hotels/policies" element={<PoliciesSection />} />
 
           {/* /admin/hotels/:id */}
           <Route path="hotels/:id" element={<HotelForm />} />

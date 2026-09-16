@@ -39,6 +39,14 @@ const handleJWTExpiredError = () =>
   );
 
 const errorHandler = (err, req, res, next) => {
+  // Handle errors that are strings or other primitive values
+  if (typeof err !== "object" || err === null) {
+    return res.status(500).json({
+      success: false,
+      message: String(err) || "Something went wrong",
+    });
+  }
+
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
 

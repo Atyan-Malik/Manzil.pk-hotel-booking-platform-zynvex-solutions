@@ -158,7 +158,7 @@ export const createBooking = catchAsync(async (req, res, next) => {
 
   sendEmail({
     to: req.user.email,
-    subject: "Your SafarStay booking is confirmed",
+    subject: "Your  Manzil.Pk booking is confirmed",
     html: bookingConfirmationTemplate(
       booking,
       hotel,

@@ -78,7 +78,7 @@ const hotelSchema = new mongoose.Schema(
     policies: { type: policySchema, default: () => ({}) },
     contact: { type: contactSchema, default: () => ({}) },
     totalRooms: { type: Number, default: 0 },
-    status: { type: String, enum: ["draft", "active", "inactive"], default: "draft" },
+    status: { type: String, enum: ["draft", "active", "inactive","approved"], default: "draft" },
     featured: { type: Boolean, default: false },
     avgRating: { type: Number, default: 0 },
     reviewCount: { type: Number, default: 0 },

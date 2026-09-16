@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
@@ -21,7 +21,7 @@ import adminbookingRoutes from "./admin/routes/adminbookingRoutes.js";
 import admindashboardRoutes from "./admin/routes/admindashboardRoutes.js";
 import adminhotelRoutes from "./admin/routes/adminhotelRoutes.js";
 
-dotenv.config({ path: "../.env" });
+// dotenv.config({ path: "../.env" }); 
 
 await connectDB();
 
@@ -50,7 +50,7 @@ if (process.env.NODE_ENV === "development") {
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "SafarStay API is running",
+    message: " Manzil.Pk API is running",
   });
 });
 

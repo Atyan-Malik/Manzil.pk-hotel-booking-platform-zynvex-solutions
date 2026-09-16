@@ -328,7 +328,7 @@ export const reviewHotelStatus = catchAsync(
         : "Hotel Rejected",
 
       message: approved
-        ? `Your hotel "${hotel.name}" is now live on SafarStay.`
+        ? `Your hotel "${hotel.name}" is now live on  Manzil.Pk.`
         : `Your hotel "${hotel.name}" was rejected. Reason: ${
             reason || "Not specified"
           }`,
